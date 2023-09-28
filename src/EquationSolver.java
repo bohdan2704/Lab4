@@ -3,7 +3,7 @@ public class EquationSolver {
         double y = 0;
         // Solve for x
         double x = (y - c) / m;
-        System.out.println("The equation is 0 when x = " + x);
+//        System.out.println("The equation is 0 when x = " + x);
         return x;
     }
 }

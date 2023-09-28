@@ -6,16 +6,16 @@ public class DividingByTwo {
         double c = (a+b)/2;
         while ( (b-a)/2 > e) {
             if (Main.NonLinearFunction(a)*Main.NonLinearFunction(c) < 0) {
-                System.out.println("New values: a = " + a + "b = " + c);
+//                System.out.println("New values: a = " + a + "b = " + c);
                 b = c;
             }
             else if (Main.NonLinearFunction(c)*Main.NonLinearFunction(b) < 0) {
-                System.out.println("New values: a = " + c + "b = " + b);
+//                System.out.println("New values: a = " + c + "b = " + b);
                 a = c;
             }
             else  {
                 System.out.println("Unexpected error during calculations");
-                throw new ArithmeticException();
+                return 0;
             }
             c = (a+b)/2; // NARROWING EVERYTHING
         }
