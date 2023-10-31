@@ -1,23 +1,25 @@
 public class IterationalMethod {
     public static double IterationalViewFunction(double x) {
-        return x + 1E-6*(x*x - Math.sin(5*x));
+        return Math.pow(Math.E, -(x+1)*(x+1)*(x+1)) ;
+//        return -2- 2/(x*x);
     }
-    public static double IterationalViewFunctionDerative(double x) {
-        return 1E-6*(2*x-5*Math.cos(5*x))+1;
-    }
-    public static double Calculate(double x1, double x2, double e) {
-        double prev, cur;
-        if (Math.abs(IterationalViewFunctionDerative(x1)) < 1 || Math.abs(IterationalViewFunctionDerative(x2)) < 1) {
-            cur =  IterationalViewFunction(x1);
+
+    public static double Calculate(double initialGuess, double tolerance, int maxIterations) {
+        double currentApproximation = initialGuess;
+
+        for (int i = 0; i < maxIterations; i++) {
+            double nextApproximation = IterationalViewFunction(currentApproximation);
+
+            // Перевірка на збіжність за допомогою допустимої похибки
+            if (Math.abs(nextApproximation - currentApproximation) < tolerance) {
+                System.out.printf("%d\t\t", i);
+                return currentApproximation;
+            }
+
+            currentApproximation = nextApproximation;
         }
-        else {
-            System.out.println("Unsolvable point here, not for this method");
-            return 0;
-        }
-        do {
-            prev = cur;
-            cur = IterationalViewFunction(prev);
-        } while (Math.abs(cur - prev) > e);
-        return cur;
+
+        // Якщо метод не збігся за максимальну кількість ітерацій
+        return Double.NaN;
     }
 }
